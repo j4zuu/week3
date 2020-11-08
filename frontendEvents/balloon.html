@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Balloon</title>
+</head>
+<body>
+
+<p id="balloon">🎈</p>
+
+<script>
+  const balloon = document.getElementById("balloon")
+  let size = window.getComputedStyle(balloon, null).getPropertyValue('font-size');
+
+  handler = (event) => {
+    const key = event.key
+    if (key === "ArrowDown"){
+      size = (parseFloat(size.replace(/px/,""))*0.9)+"px"
+      balloon.style.fontSize = size
+    }
+    else if (key === "ArrowUp"){
+      size = (parseFloat(size.replace(/px/,""))*1.1)+"px"
+      balloon.style.fontSize = size
+      if ((parseFloat(size.replace(/px/,""))) > 20){
+        balloon.textContent = "💥"
+
+      }
+    }
+    return balloon.textContent
+  }
+  window.addEventListener('keydown', handler)
+
+</script>
+
+</body>
+</html>
